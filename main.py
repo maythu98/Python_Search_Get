@@ -3,17 +3,10 @@ import sqlite3
 from sqlite3 import Error
 
 # Connect With Database
-try:
-    db = sqlite3.connect('mydatabase.db')
-
-    db.execute("CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), name VARCHAR(255), INDEX(title, name))")
-    
-except Error:
-    print(Error)
-
+db = sqlite3.connect('/home/comquas/Desktop/FinalProject/get_data/mydatabase.db')
+# db.execute("CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), name VARCHAR(255), INDEX(title, name))")
 
 def main():
-
     # identify main value      
     insert = 1
     search = 2
@@ -73,8 +66,10 @@ def userInputErrorHandling(val):
 
 def insertData(title, name):
     # insert data
-    db.execute("INSERT INTO notes (title, name) VALUES (:title, :name)", {"title": title, "name": name})
-    db.commit()
+    if (title and name):
+        db.execute("INSERT INTO notes (title, name) VALUES (:title, :name)", {"title": title, "name": name})
+        db.commit()
+        
     print("I am inserted!", title, name)
 
 
