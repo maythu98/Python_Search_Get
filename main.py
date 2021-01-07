@@ -1,9 +1,12 @@
 import sys
 import sqlite3
 from sqlite3 import Error
+from pathlib import Path
 
+path = Path(__file__).parent.absolute()
 # Connect With Database
-db = sqlite3.connect('/home/comquas/Desktop/FinalProject/get_data/mydatabase.db')
+path = str(path) + "/mydatabase.db"
+db = sqlite3.connect(path)
 # db.execute("CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(255), name VARCHAR(255), INDEX(title, name))")
 
 def main():
